@@ -39,20 +39,20 @@
 ## Exercice 5 — Scaling & mises à jour
 
 9. Sur quels nœuds se trouvent vos 3 réplicas ? Collez la sortie de `kubectl get pods -l app=site -o wide`.
-   ```
-
-   ```
+>site-69459b89d-gh89w    1/1     Running            0          3m23s   10.42.1.8   k3d-lab-agent-0    <none>           <none>
+>site-69459b89d-kr9h9    1/1     Running            0          3m14s   10.42.0.8   k3d-lab-server-0   <none>           <none>
+>site-69459b89d-vs6w7    1/1     Running            0          3m29s   10.42.2.7   k3d-lab-agent-1    <none>           <none>
 10. Avec l'image `nginx:9.99`, quel statut avait le pod ? Quelle commande vous a donné la cause ?
-    >
+    >Le pod était en Pending / ImagePullBackOff. Cause : nginx:9.99 n’existe pas. Commande : kubectl describe pod -l app=site
 11. Pendant la panne, le site restait-il accessible ? Pourquoi ?
-    >
+    >Oui, le site restait accessible. Le Service continuait vers les pods encore sains. La mise à jour était progressive, donc il y avait toujours des pods prêts.
 
 ## Exercice 6 — Portainer & Mario
 
 12. URL publique de votre Mario :
-    >
+    >https://humble-garbanzo-wgjgrp5rx69c97v6-8585.app.github.dev/
 13. Retrouvez le Deployment `mario` en ligne de commande. Portainer et `kubectl` parlent-ils au même composant ? Lequel ?
-    >
+    >Portainer et kubectl utilisent la même API Kubernetes. Le vrai composant est le Deployment mario dans le cluster.
 
 ## Bonus (facultatif)
 
